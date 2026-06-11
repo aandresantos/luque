@@ -1,5 +1,7 @@
 # Domain Discovery
 
+Informações sobre os Dominios ficam em: .docs/discovery-domain/\*.md
+
 ## Role
 
 - Candidate
