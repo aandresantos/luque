@@ -15,6 +15,13 @@
       "when": 1781179965749,
       "tag": "0001_curved_impossible_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1782303672573,
+      "tag": "0002_third_major_mapleleaf",
+      "breakpoints": true
     }
   ]
 }
