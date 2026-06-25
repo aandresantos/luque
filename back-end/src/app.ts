@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import companyMembershipRoutes from "modules/company-membership/company-membership.routes.js";
 import companyRoutes from "modules/company/company.routes.js";
 import positionRoutes from "modules/position/position.routes.js";
 import teamRoutes from "modules/team/team.routes.js";
@@ -11,6 +12,7 @@ export function buildApp() {
 
   app.register(cors);
   app.register(devAuthPlugin);
+  app.register(companyMembershipRoutes);
   app.register(companyRoutes);
   app.register(positionRoutes);
   app.register(teamRoutes);
