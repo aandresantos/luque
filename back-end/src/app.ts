@@ -1,17 +1,19 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import companyMembershipRoutes from "modules/company-membership/company-membership.routes.js";
-import companyRoutes from "modules/company/company.routes.js";
-import positionRoutes from "modules/position/position.routes.js";
-import teamRoutes from "modules/team/team.routes.js";
-import userRoutes from "modules/user/user.routes.js";
-import devAuthPlugin from "./plugins/dev-auth.js";
+import candidateProfileRoutes from "modules/candidate-profile/candidate-profile.routes";
+import companyMembershipRoutes from "modules/company-membership/company-membership.routes";
+import companyRoutes from "modules/company/company.routes";
+import positionRoutes from "modules/position/position.routes";
+import teamRoutes from "modules/team/team.routes";
+import userRoutes from "modules/user/user.routes";
+import devAuthPlugin from "./plugins/dev-auth";
 
 export function buildApp() {
   const app = Fastify({ logger: true });
 
   app.register(cors);
   app.register(devAuthPlugin);
+  app.register(candidateProfileRoutes);
   app.register(companyMembershipRoutes);
   app.register(companyRoutes);
   app.register(positionRoutes);
