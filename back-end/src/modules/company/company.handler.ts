@@ -6,6 +6,7 @@ import {
   ListCompaniesQueryDto,
   UpdateCompanyDto,
 } from "./company.dto.js";
+import { getAuthenticatedUserId } from "shared/auth.js";
 
 type ServiceError = { statusCode: number; message: string };
 
@@ -23,8 +24,9 @@ export const createCompanyHandler = async (
   reply: FastifyReply,
 ) => {
   try {
+    const userId = getAuthenticatedUserId(request);
     const body = CreateCompanyDto.parse(request.body);
-    const company = await companyService.createCompany(body);
+    const company = await companyService.createCompany(body, userId);
     return reply.code(201).send(company);
   } catch (err) {
     if (isServiceError(err)) {

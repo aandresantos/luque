@@ -8,6 +8,7 @@ import {
   UpdateCompanyMembershipRoleDto,
 } from "./company-membership.dto.js";
 import { companyMembershipService } from "./company-membership.service.js";
+import { getAuthenticatedUserId } from "shared/auth";
 
 type ServiceError = { statusCode: number; message: string };
 
@@ -18,14 +19,6 @@ function isServiceError(err: unknown): err is ServiceError {
     "statusCode" in err &&
     "message" in err
   );
-}
-
-function getAuthenticatedUserId(request: FastifyRequest): string {
-  if (!request.user?.id) {
-    throw { statusCode: 401, message: "Unauthorized" };
-  }
-
-  return request.user.id;
 }
 
 export const createCompanyMembershipHandler = async (

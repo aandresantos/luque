@@ -1,16 +1,9 @@
+import { forbidden, notFound } from "infrastructure/middleware";
 import type {
   CreateCompanyMembership,
   UpdateCompanyMembershipRole,
-} from "./company-membership.dto.js";
-import { companyMembershipRepository } from "./company-membership.repository.js";
-
-const notFound = (): never => {
-  throw { statusCode: 404, message: "Company membership not found" };
-};
-
-const forbidden = (): never => {
-  throw { statusCode: 403, message: "Only company admins can manage memberships" };
-};
+} from "./company-membership.dto";
+import { companyMembershipRepository } from "./company-membership.repository";
 
 export const companyMembershipService = {
   createMembership: async (
@@ -18,7 +11,8 @@ export const companyMembershipService = {
     companyId: string,
     data: CreateCompanyMembership,
   ) => {
-    const company = await companyMembershipRepository.findCompanyById(companyId);
+    const company =
+      await companyMembershipRepository.findCompanyById(companyId);
     if (!company) {
       throw { statusCode: 404, message: "Company not found" };
     }
@@ -39,7 +33,8 @@ export const companyMembershipService = {
     if (user.type !== "COMPANY_USER") {
       throw {
         statusCode: 409,
-        message: "Only users with type COMPANY_USER can have company memberships",
+        message:
+          "Only users with type COMPANY_USER can have company memberships",
       };
     }
 
@@ -59,11 +54,32 @@ export const companyMembershipService = {
     return companyMembershipRepository.create(companyId, data);
   },
 
+  createInitialMembership: async (userId: string, companyId: string) => {
+    const activeMembership =
+      await companyMembershipRepository.findActiveByCompanyIdAndUserId(
+        companyId,
+        userId,
+      );
+
+    if (activeMembership) {
+      throw {
+        statusCode: 409,
+        message: "User already has an active membership for this company",
+      };
+    }
+
+    return companyMembershipRepository.create(companyId, {
+      userId,
+      role: "ADMIN",
+    });
+  },
+
   listMembershipsByCompany: async (
     companyId: string,
     includeInactive: boolean,
   ) => {
-    const company = await companyMembershipRepository.findCompanyById(companyId);
+    const company =
+      await companyMembershipRepository.findCompanyById(companyId);
     if (!company) {
       throw { statusCode: 404, message: "Company not found" };
     }

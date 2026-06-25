@@ -1,18 +1,28 @@
 import { companyRepository } from "./company.repository.js";
 import type { CreateCompany, UpdateCompany } from "./company.dto.js";
+import { companyMembershipService } from "modules/company-membership/company-membership.service";
 
 const notFound = (): never => {
   throw { statusCode: 404, message: "Company not found" };
 };
 
 export const companyService = {
-  createCompany: async (data: CreateCompany) => {
+  createCompany: async (data: CreateCompany, userId: string) => {
     const existing = await companyRepository.findBySlug(data.slug);
     if (existing) {
-      throw { statusCode: 409, message: "A company with this slug already exists" };
+      throw {
+        statusCode: 409,
+        message: "A company with this slug already exists",
+      };
     }
 
-    return companyRepository.create(data);
+    return companyRepository.create(data).then(async (company) => {
+      await companyMembershipService.createInitialMembership(
+        userId,
+        company.id,
+      );
+      return company;
+    });
   },
 
   listCompanies: async (includeArchived: boolean) => {
