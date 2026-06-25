@@ -4,19 +4,22 @@
 
 Implement basic user account management for `User` — the person registered inside Luque.
 
-A User represents the identity of a person in the platform. It does not store authentication credentials directly.
+A User represents the identity of a person within the platform. It does not store authentication credentials directly.
 
-Authentication data such as password hash, login provider, sessions, and refresh tokens belong to the Auth module.
+Authentication data such as password hashes, login providers, sessions, and refresh tokens belong to the Auth module.
 
 ## Context
 
-Users can interact with Luque in different ways.
+Users can interact with Luque in one of two platform contexts:
 
-A User may create a Candidate Profile to become available for hiring opportunities.
+- **Candidate** — users looking for job opportunities.
+- **Company User** — users acting on behalf of one or more Companies.
 
-A User may also belong to one or more Companies through CompanyMembership, where they can receive roles such as Recruiter, Recruiter Manager, or Admin.
+A Company User may belong to multiple Companies through `CompanyMembership`, where they receive a Company-specific role such as Recruiter, Recruiter Manager, or Admin.
 
-The User module should focus only on account identity and basic account lifecycle.
+A Candidate cannot belong to a Company.
+
+The User module is responsible only for account identity and lifecycle.
 
 ## Acceptance Criteria
 
@@ -25,9 +28,10 @@ The User module should focus only on account identity and basic account lifecycl
 - [ ] A User can update basic account information
 - [ ] A User can be deactivated without being physically deleted
 - [ ] Email must be unique
-- [ ] Deactivated Users cannot use the platform
-- [ ] User records are not physically deleted
-- [ ] User does not store password or authentication credentials
+- [ ] A User type must be defined on creation
+- [ ] Deactivated Users cannot access the platform
+- [ ] User records are never physically deleted
+- [ ] User does not store authentication credentials
 
 ## Data Shape
 
@@ -36,6 +40,7 @@ User {
   id: uuid (PK)
   name: string (min 1, max 120)
   email: string (unique)
+  type: 'CANDIDATE' | 'COMPANY_USER'
   status: 'ACTIVE' | 'DEACTIVATED'
   createdAt: timestamp
   updatedAt: timestamp
@@ -54,16 +59,17 @@ User {
 ## Business Rules
 
 - `status` defaults to `ACTIVE` on creation.
+- User `type` must be defined during account creation.
 - User name must be between 1 and 120 characters.
 - Email must be unique.
 - Email must be valid.
 - A deactivated User cannot access the platform.
+- User records are never physically deleted.
 - Deactivating a User does not delete related CandidateProfile, CompanyMembership, CandidatePositionHistory, messages, or audit records.
-- User does not directly define whether someone is a Candidate, Recruiter, Recruiter Manager, or Admin.
-  - Candidate behavior comes from CandidateProfile.
-  - Company-related roles come from CompanyMembership.
-
-- Passwords, credentials, sessions, refresh tokens, OAuth providers, and login flows are handled by the Auth module.
+- A `CANDIDATE` User cannot belong to a Company.
+- A `COMPANY_USER` may belong to one or more Companies through `CompanyMembership`.
+- Company roles (`RECRUITER`, `RECRUITER_MANAGER`, `ADMIN`) are managed by the `CompanyMembership` module.
+- Passwords, credentials, sessions, refresh tokens, OAuth providers, and login flows are handled exclusively by the Auth module.
 
 ## Out of Scope for This Spec
 
@@ -71,8 +77,8 @@ User {
 - Login/session management
 - Password reset
 - Email verification
-- OAuth/social login
+- OAuth / Social login
 - Multi-factor authentication
 - CandidateProfile management
 - CompanyMembership management
-- Authorization/permission checks
+- Authorization / Permission checks

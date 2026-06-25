@@ -1,63 +1,117 @@
 # Domain Discovery
 
-Informações sobre os Dominios ficam em: .docs/discovery-domain/\*.md
+Informações sobre os domínios ficam em: `.docs/discovery-domain/*.md`
 
-## Role
+## UserType
 
-- Candidate
-- Recruiter
-- Recruiter Manager
-- Admin
+Define o contexto principal de uso de um usuário na plataforma.
+
+- CANDIDATE
+- COMPANY_USER
+
+## CompanyRole
+
+Define o papel de um usuário dentro de uma Company.
+
+- RECRUITER
+- RECRUITER_MANAGER
+- ADMIN
 
 ## Company
 
-Não executa nada, apenas possui:
+Não executa ações diretamente.
 
-- Users
-- Times
+Representa uma organização que possui:
+
+- CompanyMemberships
+- Teams
 
 ## CompanyMembership
 
-- User que pertence a uma Company
+Representa o vínculo entre um User do tipo `COMPANY_USER` e uma Company.
+
+Responsável por definir:
+
+- qual User pertence à Company
+- qual Role o User possui naquela Company
 
 ## User
 
-- Candidate: Pessoa que acessa a plataforma para se disponibilizar a vagas
-- Recruiter: responsável por fazer todo o processo de hunting
+Representa uma pessoa cadastrada na plataforma.
+
+Possui um `type`:
+
+- `CANDIDATE`: pessoa que acessa a plataforma para se disponibilizar a vagas
+- `COMPANY_USER`: pessoa que acessa a plataforma para atuar em nome de uma ou mais empresas
 
 ## CandidateProfile
 
-- Um usuário que pretende ser contratado
+Perfil profissional de um User do tipo `CANDIDATE`.
 
-## CandidateSkill
-
-- Relação de habilidades do Candidate para facilitar filtragens
+Contém informações usadas no processo de hunting, filtros e avaliação.
 
 ## Skill
 
-- Todas habilidades tecnicas que existem na plataforma
+Representa uma habilidade técnica cadastrada na plataforma.
+
+Exemplos:
+
+- Node.js
+- React
+- TypeScript
+- PostgreSQL
+
+## CandidateSkill
+
+Relação entre CandidateProfile e Skill.
+
+Usada para facilitar filtros, busca e matching.
 
 ## RecruiterProfile
 
-- Usuário que contrata e pertence a uma Company
+Perfil público/profissional de um User do tipo `COMPANY_USER`.
+
+Pode conter informações como:
+
+- foto
+- cargo
+- bio
+- especialidade
 
 ## Team
 
-- Time que pretende contratar um Candidato
-- Possui position
+Time dentro de uma Company que pretende contratar candidatos.
+
+Possui Positions.
 
 ## Position
 
-- Posição que está em busca de Candidato
+Vaga aberta por um Team.
+
+Representa uma necessidade real de contratação.
 
 ## CandidatePosition
 
-- Relação entre Position ativa e Candidate
+Relação entre uma Position ativa e um CandidateProfile.
+
+Representa a participação de um candidato em uma vaga específica.
 
 ## CandidatePositionStatus
 
-- Enum de status na Position
+Enum de status do CandidateProfile dentro de uma Position.
+
+Exemplos:
+
+- DISCOVERED
+- SHORTLISTED
+- UNDER_REVIEW
+- INTERVIEW
+- OFFER
+- HIRED
+- REJECTED
 
 ## CandidatePositionHistory
 
-- Histórico de movimentação do Candidate numa Position
+Histórico de movimentação de um CandidateProfile dentro de uma Position.
+
+Registra mudanças de status, autor da mudança e data.

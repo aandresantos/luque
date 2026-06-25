@@ -19,8 +19,8 @@
     {
       "idx": 2,
       "version": "7",
-      "when": 1782303672573,
-      "tag": "0002_third_major_mapleleaf",
+      "when": 1782353907382,
+      "tag": "0004_add_user_type",
       "breakpoints": true
     }
   ]

@@ -12,6 +12,7 @@ const makeUser = (
   id: "user-1",
   name: "Jane Doe",
   email: "jane@example.com",
+  type: "CANDIDATE" as const,
   status: "ACTIVE" as const,
   createdAt: new Date("2024-01-01"),
   updatedAt: new Date("2024-01-01"),
@@ -23,7 +24,11 @@ describe("userService", () => {
 
   describe("createUser", () => {
     it("creates and returns a new user when no email conflict exists", async () => {
-      const input = { name: "Jane Doe", email: "jane@example.com" };
+      const input = {
+        name: "Jane Doe",
+        email: "jane@example.com",
+        type: "CANDIDATE" as const,
+      };
       const created = makeUser();
 
       vi.mocked(userRepository.findByEmail).mockResolvedValue(undefined);
@@ -37,7 +42,11 @@ describe("userService", () => {
     });
 
     it("throws 409 when a user with the same email already exists", async () => {
-      const input = { name: "Jane Doe", email: "jane@example.com" };
+      const input = {
+        name: "Jane Doe",
+        email: "jane@example.com",
+        type: "CANDIDATE" as const,
+      };
 
       vi.mocked(userRepository.findByEmail).mockResolvedValue(makeUser());
 

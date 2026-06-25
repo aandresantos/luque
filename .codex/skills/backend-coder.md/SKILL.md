@@ -156,3 +156,4 @@ export default fp(async (app: FastifyInstance) => {
 - **Fastify plugin pattern**: every `routes.ts` uses `fp()` from `fastify-plugin`.
 - **Scope**: only touch files inside the module defined in the SDD. For cross-module needs, report and stop.
 - **Test stubs**: create `<entity>.test.ts` with `describe` blocks and empty `it` stubs — test-writer fills them in.
+- **Don't write in `_journal.json` file.**

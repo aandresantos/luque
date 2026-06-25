@@ -25,6 +25,7 @@ export const userRepository = {
       .values({
         name: data.name,
         email: data.email,
+        type: data.type,
       })
       .returning();
     return rows[0];

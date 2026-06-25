@@ -62,6 +62,8 @@ Company {
   - Query param `?includeArchived=true` returns all.
 
 - When a Company is created, the creator should become an `ADMIN` member of that Company.
+- Creating a Company automatically creates the first CompanyMembership.
+- The creator of the Company becomes the first active `ADMIN`.
 - A Company itself does not perform actions; Users perform actions through CompanyMembership roles.
 
 ## Out of Scope for This Spec
