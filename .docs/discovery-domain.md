@@ -102,8 +102,8 @@ Enum de status do CandidateProfile dentro de uma Position.
 
 Exemplos:
 
-- DISCOVERED
 - SHORTLISTED
+- DISCARDED
 - UNDER_REVIEW
 - INTERVIEW
 - OFFER

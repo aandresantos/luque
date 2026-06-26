@@ -1,6 +1,6 @@
 {
-  "id": "004a88b4-a4e6-42a1-b288-f06407a675f8",
-  "prevId": "0b3fa81b-ff5c-42b0-af77-08f28e5f5c2d",
+  "id": "0b3fa81b-ff5c-42b0-af77-08f28e5f5c2d",
+  "prevId": "3c7cc924-e809-4b84-9622-732f2c118f33",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -279,13 +279,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "type": {
-          "name": "type",
-          "type": "user_type",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
-        },
         "status": {
           "name": "status",
           "type": "user_status",
@@ -365,14 +358,6 @@
       "values": [
         "ACTIVE",
         "DEACTIVATED"
-      ]
-    },
-    "public.user_type": {
-      "name": "user_type",
-      "schema": "public",
-      "values": [
-        "CANDIDATE",
-        "COMPANY_USER"
       ]
     }
   },

@@ -24,7 +24,7 @@ You know the full domain model:
 - **Team**, **Position**
 - **CandidatePosition**, **CandidatePositionStatus**, **CandidatePositionHistory**
 
-Pipeline: `APPLIED → SCREENING → INTERVIEW → OFFER → HIRED | REJECTED | WITHDRAWN`
+Pipeline: `SHORTLISTED → UNDER_REVIEW → INTERVIEW → OFFER → HIRED | REJECTED`, with `DISCARDED` as an alternative initial decision
 
 ## Back-end module structure you must follow
 

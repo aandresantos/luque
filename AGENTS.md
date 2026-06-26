@@ -63,13 +63,17 @@ It replaces the inefficient LinkedIn hunting process with a structured, faster f
 | `RecruiterProfile`         | Extended profile for a User with Recruiter role, belongs to a Company |
 | `Team`                     | A team within a Company that wants to hire. Has Positions             |
 | `Position`                 | An open job position owned by a Team                                  |
-| `CandidatePosition`        | Relation between an active Position and a Candidate                   |
+| `CandidatePosition`        | Relation between an active Position and a CandidateProfile            |
 | `CandidatePositionStatus`  | Enum: the current step of a Candidate in a Position pipeline          |
 | `CandidatePositionHistory` | Audit log of every status change for a CandidatePosition              |
 
 ### CandidatePositionStatus values (pipeline stages)
 
-`APPLIED` → `SCREENING` → `INTERVIEW` → `OFFER` → `HIRED` | `REJECTED` | `WITHDRAWN`
+`SHORTLISTED` → `UNDER_REVIEW` → `INTERVIEW` → `OFFER` → `HIRED` | `REJECTED`
+
+Alternative initial decision:
+
+`DISCARDED`
 
 ---
 

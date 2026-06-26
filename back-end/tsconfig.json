@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "lib": ["ES2022"],
     "outDir": "dist",
     "rootDir": "src",
@@ -13,7 +13,8 @@
     "paths": {
       "modules/*": ["./src/modules/*"],
       "shared/*": ["./src/shared/*"],
-      "infrastructure/*": ["./src/infrasctructure/*"]
+      "infrastructure/*": ["./src/infrasctructure/*"],
+      "database": ["./src/db/index.ts"]
     }
   },
   "include": ["src/**/*"],
