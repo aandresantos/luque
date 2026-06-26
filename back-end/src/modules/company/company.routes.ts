@@ -6,7 +6,7 @@ import {
   getCompanyHandler,
   listCompaniesHandler,
   updateCompanyHandler,
-} from "./company.handler.js";
+} from "./company.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.get("/companies", listCompaniesHandler);

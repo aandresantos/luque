@@ -5,7 +5,7 @@ import {
   deactivateCurrentUserHandler,
   getCurrentUserHandler,
   updateCurrentUserHandler,
-} from "./user.handler.js";
+} from "./user.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.post("/users", createUserHandler);

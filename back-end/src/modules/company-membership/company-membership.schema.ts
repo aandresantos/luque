@@ -6,8 +6,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
-import { companiesTable } from "../company/company.schema.js";
-import { usersTable } from "../user/user.schema.js";
+import { companiesTable } from "../company/company.schema";
+import { usersTable } from "../user/user.schema";
 
 export const companyMembershipRoleEnum = pgEnum("company_membership_role", [
   "ADMIN",

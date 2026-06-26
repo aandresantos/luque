@@ -1,5 +1,5 @@
-import { userRepository } from "./user.repository.js";
-import type { CreateUser, UpdateCurrentUser } from "./user.dto.js";
+import { userRepository } from "./user.repository";
+import type { CreateUser, UpdateCurrentUser } from "./user.dto";
 
 const notFound = (): never => {
   throw { statusCode: 404, message: "User not found" };

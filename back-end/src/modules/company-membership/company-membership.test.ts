@@ -1,10 +1,10 @@
 /// <reference types="vitest/globals" />
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { companyMembershipRepository } from "./company-membership.repository.js";
-import { companyMembershipService } from "./company-membership.service.js";
+import { companyMembershipRepository } from "./company-membership.repository";
+import { companyMembershipService } from "./company-membership.service";
 
-vi.mock("./company-membership.repository.js");
+vi.mock("./company-membership.repository");
 
 const makeMembership = (
   overrides: Partial<

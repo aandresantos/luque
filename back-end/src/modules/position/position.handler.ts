@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { positionService } from "./position.service.js";
+import { positionService } from "./position.service";
 import {
   CreatePositionDto,
   UpdatePositionDto,
@@ -7,7 +7,7 @@ import {
   PositionParamsDto,
   TeamPositionsParamsDto,
   ListPositionsQueryDto,
-} from "./position.dto.js";
+} from "./position.dto";
 
 type ServiceError = { statusCode: number; message: string };
 

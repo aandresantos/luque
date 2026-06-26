@@ -1,3 +1,3 @@
-export { default as userRoutes } from "./user.routes.js";
-export { usersTable, userStatusEnum, userTypeEnum } from "./user.schema.js";
-export type { UserStatus, UserType } from "./user.schema.js";
+export { default as userRoutes } from "./user.routes";
+export { usersTable, userStatusEnum, userTypeEnum } from "./user.schema";
+export type { UserStatus, UserType } from "./user.schema";

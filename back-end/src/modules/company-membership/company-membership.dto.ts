@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   companyMembershipRoleEnum,
   companyMembershipStatusEnum,
-} from "./company-membership.schema.js";
+} from "./company-membership.schema";
 
 export const CreateCompanyMembershipDto = z.object({
   userId: z.uuid(),

@@ -7,7 +7,7 @@ import {
   listCompanyMembershipsHandler,
   listUserCompanyMembershipsHandler,
   updateCompanyMembershipRoleHandler,
-} from "./company-membership.handler.js";
+} from "./company-membership.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.get("/companies/:companyId/memberships", listCompanyMembershipsHandler);

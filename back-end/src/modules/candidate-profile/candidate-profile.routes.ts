@@ -7,7 +7,7 @@ import {
   getCurrentCandidateProfileHandler,
   listCandidateProfilesHandler,
   updateCurrentCandidateProfileHandler,
-} from "./candidate-profile.handler.js";
+} from "./candidate-profile.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.get("/candidate-profiles", listCandidateProfilesHandler);

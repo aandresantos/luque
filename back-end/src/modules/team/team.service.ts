@@ -1,5 +1,5 @@
-import { teamRepository } from "./team.repository.js";
-import type { CreateTeam, UpdateTeam } from "./team.dto.js";
+import { teamRepository } from "./team.repository";
+import type { CreateTeam, UpdateTeam } from "./team.dto";
 
 const notFound = (): never => {
   throw { statusCode: 404, message: "Team not found" };

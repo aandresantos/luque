@@ -1,8 +1,8 @@
-import { candidateProfileRepository } from "./candidate-profile.repository.js";
+import { candidateProfileRepository } from "./candidate-profile.repository";
 import type {
   CreateCandidateProfile,
   UpdateCurrentCandidateProfile,
-} from "./candidate-profile.dto.js";
+} from "./candidate-profile.dto";
 
 const profileNotFound = (): never => {
   throw { statusCode: 404, message: "Candidate profile not found" };

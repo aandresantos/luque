@@ -1,6 +1,6 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { CreateUserDto, UpdateCurrentUserDto } from "./user.dto.js";
-import { userService } from "./user.service.js";
+import { CreateUserDto, UpdateCurrentUserDto } from "./user.dto";
+import { userService } from "./user.service";
 
 type ServiceError = { statusCode: number; message: string };
 

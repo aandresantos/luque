@@ -2,9 +2,9 @@ export {
   companyMembershipRoleEnum,
   companyMembershipStatusEnum,
   companyMembershipsTable,
-} from "./company-membership.schema.js";
+} from "./company-membership.schema";
 export type {
   CompanyMembershipRole,
   CompanyMembershipStatus,
-} from "./company-membership.schema.js";
-export { default as companyMembershipRoutes } from "./company-membership.routes.js";
+} from "./company-membership.schema";
+export { default as companyMembershipRoutes } from "./company-membership.routes";

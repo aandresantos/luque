@@ -3,7 +3,7 @@ import {
   candidateProfileAvailabilityStatusEnum,
   candidateProfileSeniorityEnum,
   candidateProfileStatusEnum,
-} from "./candidate-profile.schema.js";
+} from "./candidate-profile.schema";
 
 const fullNameSchema = z.string().min(1).max(120);
 const headlineSchema = z.string().max(255);

@@ -5,9 +5,9 @@ import {
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
-import { candidateProfilesTable } from "../candidate-profile/candidate-profile.schema.js";
-import { positionsTable } from "../position/position.schema.js";
-import { usersTable } from "../user/user.schema.js";
+import { candidateProfilesTable } from "../candidate-profile/candidate-profile.schema";
+import { positionsTable } from "../position/position.schema";
+import { usersTable } from "../user/user.schema";
 
 export const candidatePositionStatusEnum = pgEnum("candidate_position_status", [
   "SHORTLISTED",

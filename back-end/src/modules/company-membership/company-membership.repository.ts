@@ -1,12 +1,12 @@
 import { and, eq, sql } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { companiesTable } from "../company/company.schema.js";
-import { usersTable } from "../user/user.schema.js";
-import { type CreateCompanyMembership } from "./company-membership.dto.js";
+import { db } from "../../db/index";
+import { companiesTable } from "../company/company.schema";
+import { usersTable } from "../user/user.schema";
+import { type CreateCompanyMembership } from "./company-membership.dto";
 import {
   companyMembershipsTable,
   type CompanyMembershipRole,
-} from "./company-membership.schema.js";
+} from "./company-membership.schema";
 
 export type CompanyMembershipRow = typeof companyMembershipsTable.$inferSelect;
 

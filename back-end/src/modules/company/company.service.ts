@@ -1,5 +1,5 @@
-import { companyRepository } from "./company.repository.js";
-import type { CreateCompany, UpdateCompany } from "./company.dto.js";
+import { companyRepository } from "./company.repository";
+import type { CreateCompany, UpdateCompany } from "./company.dto";
 import { companyMembershipService } from "modules/company-membership/company-membership.service";
 
 const notFound = (): never => {

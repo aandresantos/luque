@@ -6,7 +6,7 @@ import {
   getPositionHandler,
   updatePositionHandler,
   updatePositionStatusHandler,
-} from "./position.handler.js";
+} from "./position.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.get("/teams/:teamId/positions", listPositionsHandler);

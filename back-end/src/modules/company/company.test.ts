@@ -1,10 +1,10 @@
 /// <reference types="vitest/globals" />
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { companyRepository } from "./company.repository.js";
-import { companyService } from "./company.service.js";
+import { companyRepository } from "./company.repository";
+import { companyService } from "./company.service";
 
-vi.mock("./company.repository.js");
+vi.mock("./company.repository");
 
 const makeCompany = (
   overrides: Partial<Awaited<ReturnType<typeof companyRepository.findById>>> = {},

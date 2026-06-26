@@ -1,12 +1,12 @@
 import { and, asc, eq } from "drizzle-orm";
 import { db } from "database";
-import { candidateProfilesTable } from "../candidate-profile/candidate-profile.schema.js";
-import { positionsTable } from "../position/position.schema.js";
+import { candidateProfilesTable } from "../candidate-profile/candidate-profile.schema";
+import { positionsTable } from "../position/position.schema";
 import {
   candidatePositionHistoriesTable,
   candidatePositionsTable,
   type CandidatePositionStatus,
-} from "./candidate-position.schema.js";
+} from "./candidate-position.schema";
 
 export type CandidatePositionRow = typeof candidatePositionsTable.$inferSelect;
 export type CandidatePositionHistoryRow =

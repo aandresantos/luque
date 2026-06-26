@@ -6,7 +6,7 @@ import {
   getTeamHandler,
   updateTeamHandler,
   archiveTeamHandler,
-} from "./team.handler.js";
+} from "./team.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.get("/companies/:companyId/teams", listTeamsHandler);

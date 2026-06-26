@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { positionStatusEnum } from "./position.schema.js";
+import { positionStatusEnum } from "./position.schema";
 
 export const CreatePositionDto = z.object({
   title: z.string().min(1).max(120),

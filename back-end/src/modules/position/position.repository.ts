@@ -1,7 +1,7 @@
 import { eq, and } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { positionsTable, PositionStatus } from "./position.schema.js";
-import type { CreatePosition } from "./position.dto.js";
+import { db } from "../../db/index";
+import { positionsTable, PositionStatus } from "./position.schema";
+import type { CreatePosition } from "./position.dto";
 
 export type PositionRow = typeof positionsTable.$inferSelect;
 

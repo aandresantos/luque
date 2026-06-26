@@ -1,5 +1,5 @@
 import { pgTable, uuid, varchar, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
-import { teamsTable } from "../team/team.schema.js";
+import { teamsTable } from "../team/team.schema";
 
 export const positionStatusEnum = pgEnum("position_status", ["OPEN", "CLOSED"]);
 

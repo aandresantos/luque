@@ -1,11 +1,11 @@
 import { eq } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { usersTable } from "../user/user.schema.js";
-import { candidateProfilesTable } from "./candidate-profile.schema.js";
+import { db } from "../../db/index";
+import { usersTable } from "../user/user.schema";
+import { candidateProfilesTable } from "./candidate-profile.schema";
 import type {
   CreateCandidateProfile,
   UpdateCurrentCandidateProfile,
-} from "./candidate-profile.dto.js";
+} from "./candidate-profile.dto";
 
 export type CandidateProfileRow = typeof candidateProfilesTable.$inferSelect;
 export type CandidateProfileUserRow = typeof usersTable.$inferSelect;

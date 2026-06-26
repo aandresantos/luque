@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { userStatusEnum, userTypeEnum } from "./user.schema.js";
+import { userStatusEnum, userTypeEnum } from "./user.schema";
 
 const userNameSchema = z.string().min(1).max(120);
 const userEmailSchema = z.email().max(255);

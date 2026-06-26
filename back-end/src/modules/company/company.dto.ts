@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { companyStatusEnum } from "./company.schema.js";
+import { companyStatusEnum } from "./company.schema";
 
 const companySlugSchema = z
   .string()

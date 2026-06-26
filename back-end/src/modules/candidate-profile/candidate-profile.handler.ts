@@ -1,11 +1,11 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { getAuthenticatedUserId } from "../../shared/auth.js";
+import { getAuthenticatedUserId } from "../../shared/auth";
 import {
   CandidateProfileParamsDto,
   CreateCandidateProfileDto,
   UpdateCurrentCandidateProfileDto,
-} from "./candidate-profile.dto.js";
-import { candidateProfileService } from "./candidate-profile.service.js";
+} from "./candidate-profile.dto";
+import { candidateProfileService } from "./candidate-profile.service";
 
 type ServiceError = { statusCode: number; message: string };
 

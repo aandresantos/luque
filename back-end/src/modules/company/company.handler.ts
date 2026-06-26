@@ -1,12 +1,12 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { companyService } from "./company.service.js";
+import { companyService } from "./company.service";
 import {
   CompanyParamsDto,
   CreateCompanyDto,
   ListCompaniesQueryDto,
   UpdateCompanyDto,
-} from "./company.dto.js";
-import { getAuthenticatedUserId } from "shared/auth.js";
+} from "./company.dto";
+import { getAuthenticatedUserId } from "shared/auth";
 
 type ServiceError = { statusCode: number; message: string };
 

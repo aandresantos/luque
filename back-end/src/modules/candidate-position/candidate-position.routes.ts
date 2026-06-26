@@ -7,7 +7,7 @@ import {
   listCandidatePositionsHandler,
   selectCandidateForPositionHandler,
   updateCandidatePositionStatusHandler,
-} from "./candidate-position.handler.js";
+} from "./candidate-position.handler";
 
 export default fp(async (app: FastifyInstance) => {
   app.get(

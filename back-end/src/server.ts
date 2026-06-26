@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { buildApp } from './app.js'
+import { buildApp } from './app'
 
 const app = buildApp()
 

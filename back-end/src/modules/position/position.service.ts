@@ -1,6 +1,6 @@
-import { positionRepository } from "./position.repository.js";
-import type { CreatePosition, UpdatePosition } from "./position.dto.js";
-import { PositionStatus } from "./position.schema.js";
+import { positionRepository } from "./position.repository";
+import type { CreatePosition, UpdatePosition } from "./position.dto";
+import { PositionStatus } from "./position.schema";
 
 const notFound = (): never => {
   throw { statusCode: 404, message: "Position not found" };

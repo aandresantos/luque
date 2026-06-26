@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { usersTable } from "./user.schema.js";
-import type { CreateUser } from "./user.dto.js";
+import { db } from "../../db/index";
+import { usersTable } from "./user.schema";
+import type { CreateUser } from "./user.dto";
 
 export type UserRow = typeof usersTable.$inferSelect;
 

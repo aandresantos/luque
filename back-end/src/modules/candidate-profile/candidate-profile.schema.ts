@@ -7,7 +7,7 @@ import {
   varchar,
   text,
 } from "drizzle-orm/pg-core";
-import { usersTable } from "../user/user.schema.js";
+import { usersTable } from "../user/user.schema";
 
 export const candidateProfileSeniorityEnum = pgEnum(
   "candidate_profile_seniority",

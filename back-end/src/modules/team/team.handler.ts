@@ -1,12 +1,12 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { teamService } from "./team.service.js";
+import { teamService } from "./team.service";
 import {
   CreateTeamDto,
   UpdateTeamDto,
   TeamParamsDto,
   CompanyTeamsParamsDto,
   ListTeamsQueryDto,
-} from "./team.dto.js";
+} from "./team.dto";
 
 type ServiceError = { statusCode: number; message: string };
 

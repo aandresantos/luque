@@ -6,8 +6,8 @@ import {
   CreateCompanyMembershipDto,
   ListCompanyMembershipsQueryDto,
   UpdateCompanyMembershipRoleDto,
-} from "./company-membership.dto.js";
-import { companyMembershipService } from "./company-membership.service.js";
+} from "./company-membership.dto";
+import { companyMembershipService } from "./company-membership.service";
 import { getAuthenticatedUserId } from "shared/auth";
 
 type ServiceError = { statusCode: number; message: string };

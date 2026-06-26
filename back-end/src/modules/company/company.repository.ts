@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { companiesTable } from "./company.schema.js";
-import type { CreateCompany } from "./company.dto.js";
+import { db } from "../../db/index";
+import { companiesTable } from "./company.schema";
+import type { CreateCompany } from "./company.dto";
 
 export type CompanyRow = typeof companiesTable.$inferSelect;
 

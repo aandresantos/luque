@@ -1,10 +1,10 @@
 /// <reference types="vitest/globals" />
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { userRepository } from "./user.repository.js";
-import { userService } from "./user.service.js";
+import { userRepository } from "./user.repository";
+import { userService } from "./user.service";
 
-vi.mock("./user.repository.js");
+vi.mock("./user.repository");
 
 const makeUser = (
   overrides: Partial<Awaited<ReturnType<typeof userRepository.findById>>> = {},

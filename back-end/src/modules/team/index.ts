@@ -1,3 +1,3 @@
-export { teamsTable, teamStatusEnum } from "./team.schema.js";
-export type { TeamStatus } from "./team.schema.js";
-export { default as teamRoutes } from "./team.routes.js";
+export { teamsTable, teamStatusEnum } from "./team.schema";
+export type { TeamStatus } from "./team.schema";
+export { default as teamRoutes } from "./team.routes";

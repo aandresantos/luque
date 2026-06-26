@@ -6,8 +6,8 @@ import {
   type CandidatePositionRow,
   type CandidateProfileRow,
   type PositionRow,
-} from "./candidate-position.repository.js";
-import { candidatePositionService } from "./candidate-position.service.js";
+} from "./candidate-position.repository";
+import { candidatePositionService } from "./candidate-position.service";
 
 vi.mock("./candidate-position.repository");
 

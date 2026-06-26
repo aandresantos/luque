@@ -1,7 +1,7 @@
 import { eq, and } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { teamsTable } from "./team.schema.js";
-import type { CreateTeam } from "./team.dto.js";
+import { db } from "../../db/index";
+import { teamsTable } from "./team.schema";
+import type { CreateTeam } from "./team.dto";
 
 export type TeamRow = typeof teamsTable.$inferSelect;
 
