@@ -1,3 +1,5 @@
+import { normalizeEmail } from "../../shared/password";
+import { authRepository } from "../auth/auth.repository";
 import { userRepository } from "./user.repository";
 import type { CreateUser, UpdateCurrentUser } from "./user.dto";
 
@@ -11,12 +13,13 @@ const deactivated = (): never => {
 
 export const userService = {
   createUser: async (data: CreateUser) => {
-    const existing = await userRepository.findByEmail(data.email);
+    const normalizedEmail = normalizeEmail(data.email);
+    const existing = await userRepository.findByEmail(normalizedEmail);
     if (existing) {
       throw { statusCode: 409, message: "A user with this email already exists" };
     }
 
-    return userRepository.create(data);
+    return userRepository.create({ ...data, email: normalizedEmail });
   },
 
   getCurrentUser: async (id: string) => {
@@ -32,10 +35,13 @@ export const userService = {
     if (existing.status === "DEACTIVATED") return deactivated();
 
     if (data.email !== undefined) {
-      const duplicate = await userRepository.findByEmail(data.email);
+      const normalizedEmail = normalizeEmail(data.email);
+      const duplicate = await userRepository.findByEmail(normalizedEmail);
       if (duplicate && duplicate.id !== id) {
         throw { statusCode: 409, message: "User email already exists" };
       }
+
+      data = { ...data, email: normalizedEmail };
     }
 
     const user = await userRepository.update(id, data);
@@ -52,6 +58,7 @@ export const userService = {
 
     const user = await userRepository.deactivate(id);
     if (!user) return notFound();
+    await authRepository.revokeSessionsByUserId(id);
     return user;
   },
 };

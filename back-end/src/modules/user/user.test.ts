@@ -1,10 +1,12 @@
 /// <reference types="vitest/globals" />
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { authRepository } from "../auth/auth.repository";
 import { userRepository } from "./user.repository";
 import { userService } from "./user.service";
 
 vi.mock("./user.repository");
+vi.mock("../auth/auth.repository");
 
 const makeUser = (
   overrides: Partial<Awaited<ReturnType<typeof userRepository.findById>>> = {},
@@ -39,6 +41,26 @@ describe("userService", () => {
       expect(result).toEqual(created);
       expect(userRepository.findByEmail).toHaveBeenCalledWith("jane@example.com");
       expect(userRepository.create).toHaveBeenCalledWith(input);
+    });
+
+    it("normalizes the email before checking uniqueness and persisting", async () => {
+      const created = makeUser();
+
+      vi.mocked(userRepository.findByEmail).mockResolvedValue(undefined);
+      vi.mocked(userRepository.create).mockResolvedValue(created);
+
+      await userService.createUser({
+        name: "Jane Doe",
+        email: "  JANE@EXAMPLE.COM ",
+        type: "CANDIDATE",
+      });
+
+      expect(userRepository.findByEmail).toHaveBeenCalledWith("jane@example.com");
+      expect(userRepository.create).toHaveBeenCalledWith({
+        name: "Jane Doe",
+        email: "jane@example.com",
+        type: "CANDIDATE",
+      });
     });
 
     it("throws 409 when a user with the same email already exists", async () => {
@@ -190,7 +212,7 @@ describe("userService", () => {
       vi.mocked(userRepository.update).mockResolvedValue(updated);
 
       const result = await userService.updateCurrentUser("user-1", {
-        email: "jane@example.com",
+        email: "JANE@EXAMPLE.COM",
       });
 
       expect(result).toEqual(updated);
@@ -215,6 +237,7 @@ describe("userService", () => {
 
       expect(result).toEqual(deactivated);
       expect(userRepository.deactivate).toHaveBeenCalledWith("user-1");
+      expect(authRepository.revokeSessionsByUserId).toHaveBeenCalledWith("user-1");
     });
 
     it("throws 404 when the user does not exist", async () => {
