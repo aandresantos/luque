@@ -11,6 +11,7 @@ import { usersTable } from "../user/user.schema";
 
 export const candidatePositionStatusEnum = pgEnum("candidate_position_status", [
   "SHORTLISTED",
+  "REVIEW_LATER",
   "DISCARDED",
   "UNDER_REVIEW",
   "INTERVIEW",

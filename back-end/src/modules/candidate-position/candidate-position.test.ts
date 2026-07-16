@@ -198,6 +198,36 @@ describe("candidatePositionService", () => {
   });
 
   describe("updateCandidatePositionStatus", () => {
+    it("moves a shortlisted candidate position to review later", async () => {
+      const updated = makeCandidatePosition({ status: "REVIEW_LATER" });
+
+      vi.mocked(candidatePositionRepository.findById).mockResolvedValue(
+        makeCandidatePosition(),
+      );
+      vi.mocked(
+        candidatePositionRepository.updateStatusWithHistory,
+      ).mockResolvedValue(updated);
+
+      const result =
+        await candidatePositionService.updateCandidatePositionStatus(
+          "candidate-position-1",
+          "REVIEW_LATER",
+          "user-1",
+        );
+
+      expect(result).toEqual(updated);
+      expect(
+        candidatePositionRepository.updateStatusWithHistory,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          candidatePositionId: "candidate-position-1",
+          fromStatus: "SHORTLISTED",
+          toStatus: "REVIEW_LATER",
+          userId: "user-1",
+        }),
+      );
+    });
+
     it("moves a candidate position through a valid pipeline transition", async () => {
       const updated = makeCandidatePosition({ status: "UNDER_REVIEW" });
 

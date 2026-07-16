@@ -3,6 +3,8 @@ import { AppLayout } from "../layouts/AppLayout";
 import { Badge, Card } from "../../shared/components";
 import { ProtectedRoute } from "../../modules/auth/components/ProtectedRoute";
 import { LoginPage } from "../../modules/auth/pages/LoginPage";
+import { DashboardPage } from "../../modules/dashboard/components/DashboardPage";
+import { CandidateSwipePage } from "../../modules/candidate-position/pages/CandidateSwipePage";
 
 function PlaceholderPage({
   title,
@@ -72,12 +74,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Workspace overview"
-            description="Ponto de entrada protegido do app, pronto para receber os modulos de dominio."
-          />
-        ),
+        element: <DashboardPage />,
       },
       {
         path: "companies/:companyId",
@@ -121,6 +118,19 @@ export const router = createBrowserRouter([
           <PlaceholderPage
             title="Review placeholder"
             description="Espaco reservado para a etapa de review da position."
+          />
+        ),
+      },
+      {
+        path: "positions/:positionId/swipe",
+        element: <CandidateSwipePage />,
+      },
+      {
+        path: "candidate-profiles/:candidateProfileId",
+        element: (
+          <PlaceholderPage
+            title="Candidate profile placeholder"
+            description="Espaco reservado para a visualizacao completa do perfil do candidato."
           />
         ),
       },

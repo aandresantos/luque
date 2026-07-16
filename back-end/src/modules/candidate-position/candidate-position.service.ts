@@ -12,7 +12,8 @@ const validTransitions: Record<
   CandidatePositionStatus,
   ReadonlySet<CandidatePositionStatus>
 > = {
-  SHORTLISTED: new Set(["UNDER_REVIEW", "DISCARDED"]),
+  SHORTLISTED: new Set(["REVIEW_LATER", "UNDER_REVIEW", "DISCARDED"]),
+  REVIEW_LATER: new Set(["UNDER_REVIEW", "DISCARDED"]),
   DISCARDED: new Set(),
   UNDER_REVIEW: new Set(["INTERVIEW", "REJECTED"]),
   INTERVIEW: new Set(["OFFER", "REJECTED"]),
