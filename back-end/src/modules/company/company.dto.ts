@@ -6,8 +6,7 @@ const companySlugSchema = z
   .min(1)
   .max(120)
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
-    message:
-      "Slug must contain only lowercase letters, numbers, and hyphens",
+    message: "Slug must contain only lowercase letters, numbers, and hyphens",
   });
 
 export const CreateCompanyDto = z.object({
@@ -64,3 +63,6 @@ export const CompanyResponseDto = z.object({
 });
 
 export type CompanyResponse = z.infer<typeof CompanyResponseDto>;
+
+// criar company address,
+// adicionar cnpj, razao social, segmento, nome fantasia, phone

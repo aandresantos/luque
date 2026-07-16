@@ -27,4 +27,8 @@ setup: install db-up
 
 # Inicia o servidor de desenvolvimento
 dev:
+	make db-up
 	cd $(BACKEND_DIR) && pnpm run dev
+
+stop:
+	make db-down

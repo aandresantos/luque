@@ -12,8 +12,19 @@ import authPlugin from "./plugins/auth";
 
 export function buildApp() {
   const app = Fastify({ logger: true });
+  const allowedOrigins = new Set(["http://127.0.0.1:5173"]);
 
-  app.register(cors);
+  app.register(cors, {
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.has(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Origin not allowed"), false);
+    },
+    credentials: true,
+  });
   app.register(authPlugin);
   app.register(authRoutes);
   app.register(candidatePositionRoutes);
