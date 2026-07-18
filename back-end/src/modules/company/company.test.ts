@@ -1,10 +1,16 @@
 /// <reference types="vitest/globals" />
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { companyMembershipService } from "../company-membership/company-membership.service";
 import { companyRepository } from "./company.repository";
 import { companyService } from "./company.service";
 
 vi.mock("./company.repository");
+vi.mock("../company-membership/company-membership.service", () => ({
+  companyMembershipService: {
+    createInitialMembership: vi.fn(),
+  },
+}));
 
 const makeCompany = (
   overrides: Partial<Awaited<ReturnType<typeof companyRepository.findById>>> = {},
@@ -36,11 +42,14 @@ describe("companyService", () => {
       vi.mocked(companyRepository.findBySlug).mockResolvedValue(undefined);
       vi.mocked(companyRepository.create).mockResolvedValue(created);
 
-      const result = await companyService.createCompany(input);
+      const result = await companyService.createCompany(input, "user-1");
 
       expect(result).toEqual(created);
       expect(companyRepository.findBySlug).toHaveBeenCalledWith("acme");
       expect(companyRepository.create).toHaveBeenCalledWith(input);
+      expect(
+        companyMembershipService.createInitialMembership,
+      ).toHaveBeenCalledWith("user-1", "company-1");
     });
 
     it("throws 409 when a company with the same slug already exists", async () => {
@@ -53,7 +62,9 @@ describe("companyService", () => {
 
       vi.mocked(companyRepository.findBySlug).mockResolvedValue(makeCompany());
 
-      await expect(companyService.createCompany(input)).rejects.toMatchObject({
+      await expect(
+        companyService.createCompany(input, "user-1"),
+      ).rejects.toMatchObject({
         statusCode: 409,
         message: "A company with this slug already exists",
       });

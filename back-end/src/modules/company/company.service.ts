@@ -1,6 +1,6 @@
 import { companyRepository } from "./company.repository";
 import type { CreateCompany, UpdateCompany } from "./company.dto";
-import { companyMembershipService } from "modules/company-membership/company-membership.service";
+import { companyMembershipService } from "../company-membership/company-membership.service";
 
 const notFound = (): never => {
   throw { statusCode: 404, message: "Company not found" };

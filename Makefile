@@ -1,6 +1,7 @@
-.PHONY: setup install db-up db-down migrate dev
+.PHONY: setup install db-up db-down migrate dev stop
 
 BACKEND_DIR = back-end
+FRONTEND_DIR = front-end
 DOCKER_COMPOSE_BACKEND = $(BACKEND_DIR)/docker/docker-compose.dev.yml
 
 # Instala as dependências do back-end
@@ -27,8 +28,11 @@ setup: install db-up
 
 # Inicia o servidor de desenvolvimento
 dev:
-	make db-up
-	cd $(BACKEND_DIR) && pnpm run dev
+	$(MAKE) db-up
+	@trap 'kill 0' INT TERM EXIT; \
+		(cd $(BACKEND_DIR) && pnpm run dev) & \
+		(cd $(FRONTEND_DIR) && pnpm run dev) & \
+		wait
 
 stop:
-	make db-down
+	$(MAKE) db-down

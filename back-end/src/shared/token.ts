@@ -17,6 +17,9 @@ export type AccessTokenPayload = {
   iat: number;
 };
 
+const isUserType = (value: unknown): value is UserType =>
+  value === "CANDIDATE" || value === "COMPANY_USER";
+
 export function issueAccessToken(payload: Omit<AccessTokenPayload, "exp" | "iat">): string {
   return jwt.sign(payload, ACCESS_TOKEN_SECRET, {
     algorithm: "HS256",
@@ -26,12 +29,16 @@ export function issueAccessToken(payload: Omit<AccessTokenPayload, "exp" | "iat"
 
 export function verifyAccessToken(token: string): AccessTokenPayload | null {
   try {
-    const payload = jwt.verify(token, ACCESS_TOKEN_SECRET) as jwt.JwtPayload;
+    const payload = jwt.verify(token, ACCESS_TOKEN_SECRET);
+
+    if (typeof payload !== "object" || payload === null) {
+      return null;
+    }
 
     if (
       typeof payload.sub !== "string" ||
       typeof payload.sessionId !== "string" ||
-      typeof payload.type !== "string" ||
+      !isUserType(payload.type) ||
       typeof payload.exp !== "number" ||
       typeof payload.iat !== "number"
     ) {
@@ -42,7 +49,13 @@ export function verifyAccessToken(token: string): AccessTokenPayload | null {
       return null;
     }
 
-    return payload;
+    return {
+      sub: payload.sub,
+      sessionId: payload.sessionId,
+      type: payload.type,
+      exp: payload.exp,
+      iat: payload.iat,
+    };
   } catch {
     return null;
   }

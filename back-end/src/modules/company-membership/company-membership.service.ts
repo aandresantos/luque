@@ -1,4 +1,4 @@
-import { forbidden, notFound } from "infrastructure/middleware";
+import { forbidden, notFound } from "../../infrasctructure/middleware";
 import type {
   CreateCompanyMembership,
   UpdateCompanyMembershipRole,
